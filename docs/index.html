@@ -14,19 +14,16 @@
       margin: 20px auto;
       border-collapse: collapse;
     }
-
     th,
     td {
       border: 1px solid #ddd;
       padding: 8px;
     }
-
     th {
       background-color: #f2f2f2;
     }
   </style>
 </head>
-
 <body>
   <table id="data-table">
     <thead>
@@ -41,7 +38,6 @@
     <tbody>
     </tbody>
   </table>
-
   <script>
     const spreadsheetId = "15ck_3oB-Mke-eJDNhv8r9B_6bFR2GXdAR3c85JreEMs";
     // bj...w..g..
@@ -68,10 +64,11 @@
             const cellElement = document.createElement("td");
             if (today > inputDate) {
               // skip previous dates
+              console.log("Skipping previous date:", inputDate);
             } else {
               cellElement.textContent = dateCell;
               row.appendChild(cellElement);
-              // Loop through content fields
+              // Loop through 5 content fields
               rows[i].slice(1, 5).forEach((cell, index) => {
                 const cellElement = document.createElement("td");
                 if (cell) {
