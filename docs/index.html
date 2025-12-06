@@ -97,9 +97,10 @@
             }
           }
           if ( greencount == 5 ) { fullybookedweeks++}
+          console.log(greencount, fullybookedweeks);
         }
         const footnote = document.querySelector("#data-table tfoot tr td");
-        footnote.textContent = "<i>We're fully staffed for " + fullybookedweeks + " of the next " + weeks2show + " weeks.</i>";
+        footnote.textContent = "We're fully staffed for " + fullybookedweeks + " of the next " + weeks2show + " weeks.";
       } catch (error) {
         console.error("Error fetching Google Sheets data:", error);
       }
