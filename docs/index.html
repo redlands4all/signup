@@ -53,13 +53,15 @@
         const tableBody = document.querySelector("#data-table tbody");
 
         const today = new Date();
+        let weeks2show = 0;
         // Loop through the rows (starting from row 1 to skip headers)
         for (let i = 1; i < rows.length; i++) {
           // only show where cell in first column has a value AND if it's not in the past
           const dateCell = rows[i][0];
           if (dateCell) {
-            const [month, day] = dateCell.split("/").map(Number);
-            const inputDate = new Date(today.getFullYear(), month - 1, day);
+            // assume date in dateCell is month/date/year
+            const [month, day, year] = dateCell.split("/").map(Number);
+            const inputDate = new Date(year, month-1, day);
             const row = document.createElement("tr");
             const cellElement = document.createElement("td");
             if (today > inputDate) {
@@ -68,6 +70,7 @@
             } else {
               cellElement.textContent = dateCell;
               row.appendChild(cellElement);
+              weeks2show++;
               // Loop through 5 content fields
               rows[i].slice(1, 5).forEach((cell, index) => {
                 const cellElement = document.createElement("td");
@@ -90,6 +93,12 @@
             }
           }
         }
+        const tableFoot = document.querySelector("#data-table tfoot");
+        const row = document.createElement("tr");
+        const cellElement = document.createElement("td");
+        cellElement.textContent = "That's it for the next " + weeks2show + " weeks.";
+        row.appendChild(cellElement);
+        tableFoot.appendChild(row);
       } catch (error) {
         console.error("Error fetching Google Sheets data:", error);
       }
@@ -99,5 +108,4 @@
     document.addEventListener("DOMContentLoaded", fetchGoogleSheetData);    
   </script>
 </body>
-
 </html>
