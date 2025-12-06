@@ -37,6 +37,7 @@
     </thead>
     <tbody>
     </tbody>
+    <tfoot><tr><td rowspan="5" align="center"></td></tr></tfoot>
   </table>
   <script>
     const spreadsheetId = "15ck_3oB-Mke-eJDNhv8r9B_6bFR2GXdAR3c85JreEMs";
@@ -93,12 +94,8 @@
             }
           }
         }
-        const tableFoot = document.querySelector("#data-table tfoot");
-        const row = document.createElement("tr");
-        const cellElement = document.createElement("td");
-        cellElement.textContent = "That's it for the next " + weeks2show + " weeks.";
-        row.appendChild(cellElement);
-        tableFoot.appendChild(row);
+        const footnote = document.querySelector("#data-table tfoot tr td");
+        footnote.textContent = "That's it for the next " + weeks2show + " weeks.";
       } catch (error) {
         console.error("Error fetching Google Sheets data:", error);
       }
