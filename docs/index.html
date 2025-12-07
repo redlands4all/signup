@@ -60,7 +60,7 @@
         for (let i = 1; i < rows.length; i++) {
           // only show where cell in first column has a value AND if it's not in the past
           const dateCell = rows[i][0];
-          let greencount = 0; // if 5 then we're fully set
+          let greencount = 0; // if staffed with 4 people we're set for that week
           if (dateCell) {
             // assume date in dateCell is month/date/year
             const [month, day, year] = dateCell.split("/").map(Number);
@@ -96,8 +96,7 @@
               tableBody.appendChild(row);
             }
           }
-          if ( greencount == 5 ) { fullybookedweeks++}
-          console.log(greencount, fullybookedweeks);
+          if ( greencount == 4 ) { fullybookedweeks++};
         }
         const footnote = document.querySelector("#data-table tfoot tr td");
         footnote.textContent = "We're fully staffed for " + fullybookedweeks + " of the next " + weeks2show + " weeks.";
